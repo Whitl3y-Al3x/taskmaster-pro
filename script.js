@@ -4,13 +4,6 @@ $(document).ready(function () {
   $('#currentDay').text(dayVar)
 })
 
-// function getHourDisplay(hour) {
-//     if (hour > 12)
-//         return (hour - 12) + ' pm';
-//         if (hour === 12)
-//         return '12 pm'
-//         return hour + 'am';
-// }
 
 const timeBlock = ['9AM', '10AM', '11AM', '12PM', '1PM', '2PM', '3PM', '4PM', '5PM'];
 for (let i = 0; i < timeBlock.length; i++) {
