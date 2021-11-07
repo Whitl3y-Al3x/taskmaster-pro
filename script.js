@@ -16,15 +16,23 @@ const timeBlock = ['9AM', '10AM', '11AM', '12PM', '1PM', '2PM', '3PM', '4PM', '5
 for (let i = 0; i < timeBlock.length; i++) {
 }
 
-let currentHour = Date.now().getHours();
-  $('.timeBlock').each(function(){
-  var val = parseInt($(timeBlock), prop('id'));
-  if (val > currentHour && val < currentHour) {
-    $(timeBlock).css('background-color', 'Light Gray');
-  } else if (val < currentHour && val > currentHour) {
-    return $(timeBlock).css('background-color', 'Red');
-  } else if (val === currentHour) {
-    return $(timeBlock).css('background-color', 'Green');
+let currentHour = new Date().getHours();
+console.log(currentHour);
+  $('.time-block').each(function(){
+    console.log($(this));
+    console.log(this.id);
+    var strid = this.id
+    var arr = strid.split("-");
+    console.log(arr);
+   var timeId = parseInt(arr[1])
+
+  console.log(timeId);
+  if (timeId > currentHour) {
+    return $(this).find(".description").addClass(`future`)
+  } else if (timeId < currentHour) {
+    return $(this).find(".description").addClass(`past`)
+  } else if (timeId === currentHour) {
+    return $(this).find(".description").addClass(`present`)
   }
 });
 
@@ -43,7 +51,7 @@ function getRow(hour) {
   labelDiv.setAttribute("id", `hour-${hour}-label`);
   labelDiv.textContent = hour;
 
-  let textAreaEL = document.createElement("textare");
+  let textAreaEL = document.createElement("textarea");
   textAreaEL.setAttribute("class", "col-md-10 description past");
   textAreaEL.setAttribute("id", `textarea-${hour}`);
   if (localStorage.getItem(hour)) {
@@ -54,8 +62,8 @@ function getRow(hour) {
   saveBtnEl.setAttribute("class", "btn saveBtn col-md-1 hour");
   saveBtnEl.setAttribute("id", `btn-hour-${hour}`);
   saveBtnEl.addEventListener("click", function () {
-    const textEntry = document.querySelector(`#textarea-${hour}`).value;
-    localStorage.setItem(hour, textEntry);
+    const textEntry = document.querySelector(`#textarea-${hour}`).timeIdue;
+    localStorage.getItem(hour, textEntry);
 
   })
 
